@@ -6,6 +6,13 @@
     <title>Document</title>
 </head>
 <body>
-    This is signup page
+    
+    <form action="{%url "processRequest" %}"method="POST">
+        {% csrf_token %}
+        {{form.user_name}}
+        {{form.user_password}}
+        <button type="submit">Submit</button>
+    </form>
+    
 </body>
 </html>
