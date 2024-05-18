@@ -16,12 +16,30 @@ def signup(request):
 
 
 def processRequest(request):
+    # frm = signupform(request.POST)
+    # if request.method == 'POST':
+    #     if frm.is_valid():
+    #         frm.save()
+    #         return redirect (login)
+    # else:
+    #     return HttpResponse('Signup not working')
+
     if request.method == 'POST':
-        frm = signupform(request.POST)
-        frm.save()
+        username = request.POST.get('username')
+        userpassword = request.POST.get('userpassword')
+
+        _user = user.objects.create(
+            user_name = username,
+            user_password = userpassword
+        )
+        _user.save()
         return redirect (login)
     else:
         return HttpResponse('Signup not working')
+
+
+
+
     
 
 
@@ -35,8 +53,12 @@ def getCredentials(request):
         
         for u in allusers:
             if(u.user_name==username and u.user_password==userpassword):
-                return HttpResponse('Successful login')
+                return dashboard(request,u)
         return HttpResponse('login failed')
             
+
+def dashboard(request, user):
+    return render (request, "base/dashboard.html" ,{'user':user})
+    
     
                 
