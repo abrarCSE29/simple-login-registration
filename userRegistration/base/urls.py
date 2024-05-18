@@ -6,5 +6,6 @@ urlpatterns = [
     path('',views.home , name="home"),
     path('login', views.login, name="login"),
     path('signup',views.signup, name="signup"),
-    path('processRequest', views.processRequest, name="processRequest")
+    path('processRequest', views.processRequest, name="processRequest"),
+    path('getCredentials', views.getCredentials, name="getCredentials"),
 ]
